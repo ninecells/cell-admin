@@ -1,0 +1,14 @@
+{
+  "name": "ninecells/cell-admin",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.5.9",
+    "ninecells/cell-auth": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "NineCells\\Admin\\": ""
+    }
+  },
+  "minimum-stability": "dev"
+}
