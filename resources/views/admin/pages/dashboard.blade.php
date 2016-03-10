@@ -1,8 +1,11 @@
+@inject('packages', 'NineCells\Admin\PackageList')
+
 @extends('ncells::admin.app')
 
 @section('content')
-@inject('packages', 'NineCells\Admin\PackageList')
-@foreach($packages->getPackageList() as $package)
-{{ $package->getName()."<br/>" }}
-@endforeach
+<ul>
+    @foreach($packages->getPackageList() as $pkg)
+    <li><a href="{{ $pkg->getUrl() }}">{{ $pkg->getName() }}</a></li>
+    @endforeach
+</ul>
 @endsection
