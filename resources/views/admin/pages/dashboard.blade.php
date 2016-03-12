@@ -2,6 +2,9 @@
 
 @extends('ncells::admin.app')
 
+@section('page-title', 'Cells')
+@section('page-description', 'List of cells')
+
 @section('content')
 <ul>
     @foreach($packages->getPackageList() as $pkg)
