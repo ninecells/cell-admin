@@ -2,9 +2,9 @@
 
 namespace NineCells\Admin;
 
-class AdminHelper
+class DotenvStore
 {
-    public static function isAdmin($user)
+    public function isAdmin($user)
     {
         $names = env('ADMIN_NAMES', '');
         foreach (explode(',', $names) as $name) {
