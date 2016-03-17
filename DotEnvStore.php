@@ -6,9 +6,9 @@ class DotenvStore
 {
     public function isAdmin($user)
     {
-        $names = env('ADMIN_NAMES', '');
-        foreach (explode(',', $names) as $name) {
-            if ($name === $user->name) {
+        $emails = env('ADMIN_EMAILS', '');
+        foreach (explode(',', $emails) as $email) {
+            if ($email === $user->email) {
                 return true;
             }
         }
