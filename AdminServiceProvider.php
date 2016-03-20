@@ -3,13 +3,27 @@
 namespace NineCells\Admin;
 
 use App;
+use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Support\ServiceProvider;
 use NineCells\Assets\AdminLTE\AdminLTEServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
 {
-    public function boot()
+    private function registerPolicies(GateContract $gate, AdminManager $admin)
     {
+        $gate->before(function ($user, $ability) use ($admin) {
+            if ($ability === "admin") {
+                if ($user && $admin->isAdmin($user)) {
+                    return $user;
+                }
+            }
+        });
+    }
+
+    public function boot(GateContract $gate, AdminManager $admin)
+    {
+        $this->registerPolicies($gate, $admin);
+
         if (!$this->app->routesAreCached()) {
             require __DIR__ . '/Http/routes.php';
         }
