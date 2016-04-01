@@ -2,11 +2,16 @@
 
 namespace NineCells\Admin\Http\Controllers;
 
+use Gate;
+use Redirect;
+
 class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->authorize('admin');
+        if (!Gate::allows('admin')) {
+            Redirect::to('/')->send();
+        }
     }
 
     public function GET_index()
