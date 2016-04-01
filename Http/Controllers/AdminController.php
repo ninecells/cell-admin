@@ -7,15 +7,12 @@ use Redirect;
 
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        if (!Gate::allows('admin')) {
-            Redirect::to('/')->send();
-        }
-    }
-
     public function GET_index()
     {
+        if (!Gate::allows('admin')) {
+            return Redirect::to('/');
+        }
+
         return view('ncells::admin.pages.dashboard');
     }
 }
